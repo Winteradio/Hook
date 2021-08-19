@@ -13,7 +13,7 @@ namespace 그러데이션_그리기
     public partial class Form1 : Form
     {
         public int x, y;
-        public int nBright = 100;
+        public int nBright;
         public Form1()
         {
             InitializeComponent();
@@ -22,9 +22,14 @@ namespace 그러데이션_그리기
         private void button1_Click(object sender, EventArgs e)
         {
             Graphics g = pictureBox1.CreateGraphics();
-            Pen mypen = new Pen(Color.FromArgb(nBright, 100, 100, 100), 0.1f);
             for (y=0; y < pictureBox1.Height; y +=3 )
             {
+                nBright = y;
+                if (y >= 255)
+                {
+                    nBright = 255;
+                }
+                Pen mypen = new Pen(Color.FromArgb(nBright, 100, 100, 100), 0.1f);
                 for (x=0; x< pictureBox1.Width; x++)
                 {
                     g.DrawLine(mypen,x, y,x + 1, y + 1);
